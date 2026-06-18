@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة محمية بكلمة سر</title>
+    <title>بوابة الحماية السرية</title>
     <style>
+        /* إعدادات الخلفية المتحركة */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -13,76 +20,143 @@
         }
 
         body {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background: linear-gradient(-45deg, #1f4068, #162447, #0f4c75, #3282b8);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #333;
+            overflow: hidden;
         }
 
+        /* صندوق بتأثير زجاجي مودرن */
         .login-container {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            width: 90%;
             max-width: 400px;
             text-align: center;
+            transition: all 0.4s ease;
         }
 
         h2 {
-            margin-bottom: 20px;
-            color: #1e3c72;
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-size: 24px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: 1px;
         }
 
-        input[type="password"] {
+        /* منطقة الإدخال وعلامة العين */
+        .password-wrapper {
+            position: relative;
             width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        input[type="password"], input[type="text"] {
+            width: 100%;
+            padding: 14px 45px 14px 15px; /* مسافة للعين */
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
             outline: none;
             font-size: 16px;
-            transition: border-color 0.3s;
+            color: #111;
+            transition: all 0.3s ease;
             text-align: center;
+            font-weight: bold;
         }
 
-        input[type="password"]:focus {
-            border-color: #2a5298;
+        /* تأثير الحركة والإضاءة عند الكتابة */
+        input:focus {
+            border-color: #00d2fc;
+            box-shadow: 0 0 15px rgba(0, 210, 252, 0.6);
+            transform: scale(1.02);
         }
 
+        /* تصميم زر العين كأيقونة مبسطة ناعمة */
+        .eye-icon {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            user-select: none;
+        }
+
+        .eye-icon:hover {
+            opacity: 1;
+        }
+
+        /* زر الدخول الاحترافي */
         button {
             width: 100%;
-            padding: 12px;
-            background-color: #1e3c72;
+            padding: 14px;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+            transition: all 0.3s ease;
         }
 
         button:hover {
-            background-color: #2a5298;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 198, 255, 0.6);
         }
 
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        /* رسالة الخطأ بتأثير اهتزاز */
         #errorMessage {
-            color: #e74c3c;
+            color: #ff4a4a;
             margin-top: 15px;
             font-weight: bold;
             display: none;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            animation: shake 0.3s ease;
         }
 
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* المحتوى السري */
         #secretContent {
             display: none;
-            animation: fadeIn 0.5s ease-in-out;
+            animation: zoomIn 0.5s ease forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        #secretContent p {
+            color: #ffffff;
+            margin-top: 10px;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -90,20 +164,46 @@
 
     <!-- صندوق تسجيل الدخول -->
     <div class="login-container" id="loginBox">
-        <h2>أدخل كلمة السر للدخول</h2>
-        <input type="password" id="passwordInput" placeholder="كلمة السر هنا...">
-        <button onclick="checkPassword()">دخول</button>
-        <p id="errorMessage">كلمة السر خاطئة، حاول مجدداً!</p>
+        <h2>بوابة الحماية الرقمية</h2>
+        <div class="password-wrapper">
+            <input type="password" id="passwordInput" placeholder="أدخل كلمة السر هنا...">
+            <!-- أيقونة العين مرسومة بالـ SVG لتظهر بوضوح وبدون ملفات خارجية -->
+            <span class="eye-icon" id="toggleEye" onclick="togglePassword()">
+                <svg id="eyeSvg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:20px; height:20px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </span>
+        </div>
+        <button onclick="checkPassword()">تأكيد الهوية</button>
+        <p id="errorMessage">⚠️ كلمة السر خاطئة! حاول مرة أخرى.</p>
     </div>
 
     <!-- المحتوى السري -->
     <div class="login-container" id="secretContent">
-        <h2>🎉 أهلاً بك!</h2>
-        <p>لقد دخلت بنجاح باستخدام كلمة السر الصحيحة.</p>
-        <p style="margin-top: 15px; color: #27ae60; font-weight: bold;">هذا هو المحتوى المحمي.</p>
+        <h2 style="color: #00d2fc;">🎉 تم الاختراق بنجاح!</h2>
+        <p>أهلاً بك يا بطل، لقد تجاوزت نظام الحماية السري.</p>
+        <p style="margin-top: 15px; color: #27ae60; font-weight: bold; background: rgba(255,255,255,0.2); padding: 8px; border-radius: 5px;">[هنا الأساسيات والمحتوى القادم...]</p>
     </div>
 
     <script>
+        // دالة إظهار وإخفاء كلمة السر
+        function togglePassword() {
+            const passwordInput = document.getElementById('passwordInput');
+            const eyeSvg = document.getElementById('eyeSvg');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                // تغيير شكل العين إلى عين مشطوبة عند الإظهار
+                eyeSvg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />';
+            } else {
+                passwordInput.type = 'password';
+                // إرجاع العين العادية عند الإخفاء
+                eyeSvg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />';
+            }
+        }
+
+        // دالة التحقق من الباسورد
         function checkPassword() {
             const input = document.getElementById('passwordInput').value;
             const error = document.getElementById('errorMessage');
@@ -115,6 +215,9 @@
                 loginBox.style.display = 'none';
                 secretContent.style.display = 'block';
             } else {
+                // إعادة تشغيل إنيميشن الاهتزاز عند الخطأ المتكرر
+                error.style.display = 'none';
+                void error.offsetWidth; 
                 error.style.display = 'block';
                 document.getElementById('passwordInput').value = '';
             }
