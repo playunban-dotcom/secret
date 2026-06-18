@@ -3,15 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة الحماية السرية</title>
+    <title>بوابة الحماية الرقمية</title>
     <style>
-        /* إعدادات الخلفية المتحركة */
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -19,10 +12,12 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        /* خلفية فخمة ومظلمة بتأثير النيون */
         body {
-            background: linear-gradient(-45deg, #1f4068, #162447, #0f4c75, #3282b8);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: #0a0e17;
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(0, 210, 252, 0.15) 0px, transparent 50%),
+                radial-gradient(at 90% 80%, rgba(0, 114, 255, 0.15) 0px, transparent 50%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -30,30 +25,31 @@
             overflow: hidden;
         }
 
-        /* صندوق بتأثير زجاجي مودرن */
+        /* صندوق الدخول بشكل مودرن وفخم (تأثير زجاجي مظلم) */
         .login-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            background: rgba(16, 22, 37, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             padding: 40px 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 114, 255, 0.1);
             width: 90%;
             max-width: 400px;
             text-align: center;
-            transition: all 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         h2 {
             margin-bottom: 25px;
             color: #ffffff;
-            font-size: 24px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            letter-spacing: 1px;
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
-        /* منطقة الإدخال وعلامة العين */
+        /* حقل الإدخال المحسن */
         .password-wrapper {
             position: relative;
             width: 100%;
@@ -62,30 +58,31 @@
 
         input[type="password"], input[type="text"] {
             width: 100%;
-            padding: 14px 45px 14px 15px; /* مسافة للعين */
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 50px 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.05);
             outline: none;
             font-size: 16px;
-            color: #111;
+            color: #ffffff;
             transition: all 0.3s ease;
             text-align: center;
-            font-weight: bold;
+            letter-spacing: 2px;
         }
 
-        /* تأثير الحركة والإضاءة عند الكتابة */
+        /* إضاءة نيون وتأثير عند الكتابة */
         input:focus {
-            border-color: #00d2fc;
-            box-shadow: 0 0 15px rgba(0, 210, 252, 0.6);
-            transform: scale(1.02);
+            border-color: #00c6ff;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(0, 198, 255, 0.3);
+            transform: scale(1.01);
         }
 
-        /* تصميم زر العين كأيقونة مبسطة ناعمة */
+        /* أيقونة العين الاحترافية */
         .eye-icon {
             position: absolute;
             top: 50%;
-            right: 15px;
+            right: 18px;
             transform: translateY(-50%);
             cursor: pointer;
             width: 24px;
@@ -93,129 +90,131 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0.6;
-            transition: opacity 0.3s;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color 0.3s;
             user-select: none;
         }
 
         .eye-icon:hover {
-            opacity: 1;
+            color: #00c6ff;
         }
 
-        /* زر الدخول الاحترافي */
+        /* زر دخول نيون فخم */
         button {
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             background: linear-gradient(135deg, #00c6ff, #0072ff);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 14px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 114, 255, 0.3);
             transition: all 0.3s ease;
+            letter-spacing: 0.5px;
         }
 
         button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 198, 255, 0.6);
+            box-shadow: 0 8px 25px rgba(0, 198, 255, 0.5);
         }
 
-        button:active {
-            transform: translateY(-1px);
-        }
-
-        /* رسالة الخطأ بتأثير اهتزاز */
+        /* رسالة الخطأ الهزازة */
         #errorMessage {
             color: #ff4a4a;
             margin-top: 15px;
             font-weight: bold;
             display: none;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            animation: shake 0.3s ease;
+            animation: shake 0.3s ease-in-out;
         }
 
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
         }
 
-        /* المحتوى السري */
+        /* شاشة المحتوى بعد الدخول */
         #secretContent {
             display: none;
-            animation: zoomIn 0.5s ease forwards;
+            border-color: rgba(0, 210, 252, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 210, 252, 0.2);
+            animation: zoomIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
 
         @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.9); }
+            from { opacity: 0; transform: scale(0.8); }
             to { opacity: 1; transform: scale(1); }
         }
 
         #secretContent p {
-            color: #ffffff;
+            color: #a0aec0;
             margin-top: 10px;
             font-size: 16px;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
-    <!-- صندوق تسجيل الدخول -->
+    <audio id="ramadanAudio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto"></audio>
     <div class="login-container" id="loginBox">
-        <h2>بوابة الحماية الرقمية</h2>
+        <h2>نظام الحماية المشفر</h2>
         <div class="password-wrapper">
-            <input type="password" id="passwordInput" placeholder="أدخل كلمة السر هنا...">
-            <!-- أيقونة العين مرسومة بالـ SVG لتظهر بوضوح وبدون ملفات خارجية -->
+            <input type="password" id="passwordInput" placeholder="أدخل رمز المرور السري...">
             <span class="eye-icon" id="toggleEye" onclick="togglePassword()">
-                <svg id="eyeSvg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:20px; height:20px;">
+                <svg id="eyeSvg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:22px; height:22px;">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
             </span>
         </div>
-        <button onclick="checkPassword()">تأكيد الهوية</button>
-        <p id="errorMessage">⚠️ كلمة السر خاطئة! حاول مرة أخرى.</p>
+        <button onclick="checkPassword()">تحقق من الرمز</button>
+        <p id="errorMessage">🔒 الرمز غير صحيح! حاول مجدداً.</p>
     </div>
 
-    <!-- المحتوى السري -->
     <div class="login-container" id="secretContent">
-        <h2 style="color: #00d2fc;">🎉 تم الاختراق بنجاح!</h2>
-        <p>أهلاً بك يا بطل، لقد تجاوزت نظام الحماية السري.</p>
-        <p style="margin-top: 15px; color: #27ae60; font-weight: bold; background: rgba(255,255,255,0.2); padding: 8px; border-radius: 5px;">[هنا الأساسيات والمحتوى القادم...]</p>
+        <h2 style="color: #00c6ff; text-shadow: 0 0 15px rgba(0,198,255,0.4);">🎉 تم فك التشفير بنجاح!</h2>
+        <p>أهلاً بك يا بطل، لقد وصلت إلى لوحة التحكم الرئيسية والمحتوى أصبح متاحاً الآن.</p>
+        <div style="margin-top: 25px; color: #00r6ff; font-weight: bold; background: rgba(0, 198, 255, 0.1); padding: 12px; border-radius: 10px; border: 1px dashed rgba(0,198,255,0.3)">
+            🎵 الأغنية تعمل الآن في الخلفية...
+        </div>
     </div>
 
     <script>
-        // دالة إظهار وإخفاء كلمة السر
+        // دالة إظهار وإخفاء الباسورد
         function togglePassword() {
             const passwordInput = document.getElementById('passwordInput');
             const eyeSvg = document.getElementById('eyeSvg');
             
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                // تغيير شكل العين إلى عين مشطوبة عند الإظهار
                 eyeSvg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />';
             } else {
                 passwordInput.type = 'password';
-                // إرجاع العين العادية عند الإخفاء
                 eyeSvg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />';
             }
         }
 
-        // دالة التحقق من الباسورد
+        // دالة التحقق وتشغيل الأغنية علطول
         function checkPassword() {
             const input = document.getElementById('passwordInput').value;
             const error = document.getElementById('errorMessage');
             const loginBox = document.getElementById('loginBox');
             const secretContent = document.getElementById('secretContent');
+            const audio = document.getElementById('ramadanAudio');
 
             if (input === 'ASe') {
                 error.style.display = 'none';
                 loginBox.style.display = 'none';
                 secretContent.style.display = 'block';
+                
+                // تشغيل الأغنية فوراً عند الدخول الصحيح
+                audio.play().catch(function(error) {
+                    console.log("المتصفح حظر التشغيل التلقائي، جاري المحاولة مجدداً.");
+                });
             } else {
-                // إعادة تشغيل إنيميشن الاهتزاز عند الخطأ المتكرر
                 error.style.display = 'none';
                 void error.offsetWidth; 
                 error.style.display = 'block';
