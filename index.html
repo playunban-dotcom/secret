@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة محمية بكلمة سر</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .login-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #1e3c72;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            text-align: center;
+        }
+
+        input[type="password"]:focus {
+            border-color: #2a5298;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1e3c72;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #2a5298;
+        }
+
+        #errorMessage {
+            color: #e74c3c;
+            margin-top: 15px;
+            font-weight: bold;
+            display: none;
+        }
+
+        #secretContent {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- صندوق تسجيل الدخول -->
+    <div class="login-container" id="loginBox">
+        <h2>أدخل كلمة السر للدخول</h2>
+        <input type="password" id="passwordInput" placeholder="كلمة السر هنا...">
+        <button onclick="checkPassword()">دخول</button>
+        <p id="errorMessage">كلمة السر خاطئة، حاول مجدداً!</p>
+    </div>
+
+    <!-- المحتوى السري -->
+    <div class="login-container" id="secretContent">
+        <h2>🎉 أهلاً بك!</h2>
+        <p>لقد دخلت بنجاح باستخدام كلمة السر الصحيحة.</p>
+        <p style="margin-top: 15px; color: #27ae60; font-weight: bold;">هذا هو المحتوى المحمي.</p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const error = document.getElementById('errorMessage');
+            const loginBox = document.getElementById('loginBox');
+            const secretContent = document.getElementById('secretContent');
+
+            if (input === 'ASe') {
+                error.style.display = 'none';
+                loginBox.style.display = 'none';
+                secretContent.style.display = 'block';
+            } else {
+                error.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+            }
+        }
+    </script>
+
+</body>
+</html>
