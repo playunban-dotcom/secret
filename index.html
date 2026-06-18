@@ -158,7 +158,10 @@
 </head>
 <body>
 
-    <audio id="ramadanAudio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto"></audio>
+    <!-- تم تغيير الرابط هنا إلى أغنية أهلاً رمضان الحقيقية -->
+    <audio id="ramadanAudio" src="https://archive.org/download/Ramadan_Songs/01.Ahlan%20Ahlan%20Ya%20Ramadan.mp3" preload="auto"></audio>
+
+    <!-- صندوق تسجيل الدخول المطور -->
     <div class="login-container" id="loginBox">
         <h2>نظام الحماية المشفر</h2>
         <div class="password-wrapper">
@@ -174,16 +177,16 @@
         <p id="errorMessage">🔒 الرمز غير صحيح! حاول مجدداً.</p>
     </div>
 
+    <!-- المحتوى السري الفخم -->
     <div class="login-container" id="secretContent">
-        <h2 style="color: #00c6ff; text-shadow: 0 0 15px rgba(0,198,255,0.4);">🎉 تم فك التشفير بنجاح!</h2>
-        <p>أهلاً بك يا بطل، لقد وصلت إلى لوحة التحكم الرئيسية والمحتوى أصبح متاحاً الآن.</p>
-        <div style="margin-top: 25px; color: #00r6ff; font-weight: bold; background: rgba(0, 198, 255, 0.1); padding: 12px; border-radius: 10px; border: 1px dashed rgba(0,198,255,0.3)">
-            🎵 الأغنية تعمل الآن في الخلفية...
+        <h2 style="color: #00c6ff; text-shadow: 0 0 15px rgba(0,198,255,0.4);">🎉 مرحباً بك رمضان ريمكس!</h2>
+        <p>تم تجاوز الحماية بنجاح، استمع للأغنية الآن.</p>
+        <div style="margin-top: 25px; color: #00c6ff; font-weight: bold; background: rgba(0, 198, 255, 0.1); padding: 12px; border-radius: 10px; border: 1px dashed rgba(0,198,255,0.3)">
+            🌙 مرحب مرحب يا هلال.. أهلاً أهلاً يا رمضان! 🎵
         </div>
     </div>
 
     <script>
-        // دالة إظهار وإخفاء الباسورد
         function togglePassword() {
             const passwordInput = document.getElementById('passwordInput');
             const eyeSvg = document.getElementById('eyeSvg');
@@ -197,7 +200,6 @@
             }
         }
 
-        // دالة التحقق وتشغيل الأغنية علطول
         function checkPassword() {
             const input = document.getElementById('passwordInput').value;
             const error = document.getElementById('errorMessage');
@@ -210,9 +212,9 @@
                 loginBox.style.display = 'none';
                 secretContent.style.display = 'block';
                 
-                // تشغيل الأغنية فوراً عند الدخول الصحيح
+                // تشغيل الأغنية المطلوبة فوراً
                 audio.play().catch(function(error) {
-                    console.log("المتصفح حظر التشغيل التلقائي، جاري المحاولة مجدداً.");
+                    console.log("المتصفح يحتاج تفاعل لتشغيل الصوت تلقائياً.");
                 });
             } else {
                 error.style.display = 'none';
